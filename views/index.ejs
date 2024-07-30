@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>100 Checkboxes</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100 Checkboxes</title>
+  <style>
+   
+    body{
+      display: flex;
+      background-color: bisque;
+      align-items: center;
+      justify-content: center;
+    }
+    a{
+      display: inline-block;
+      margin-top:2%;
+      color:darkcyan;
+      font-size: 30px;
+      border-style: double;
+      text-decoration: none;
+      text-align: center;
+
+    }
+    p{
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <% if (!user) { %>
+      <a class="button_google" href="/login"  > Sign in </a>
+    <% } else { %>
+      <a class="button_google" href="/logout">Sign out</a>
+    <% } %>
+  
+
+  <% if (user) { %>
     <div id="checkboxes-container">
       <% for (let i = 0; i < 100; i++) { %>
-      <input type="checkbox" id="checkbox-<%= i %>" class="checkbox" />
-      <% if ((i + 1) % 10 === 0) { %><br /><% } %> <% } %>
+        <input type="checkbox" id="checkbox-<%= i %>" class="checkbox" />
+        <% if ((i + 1) % 10 === 0) { %><br /><% } %>
+      <% } %>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/script.js"></script>
-  </body>
+  <% } else { %>
+    <p class="sign_in">Please sign in .</p>
+  <% } %>
+</nav>
+</body>
 </html>
